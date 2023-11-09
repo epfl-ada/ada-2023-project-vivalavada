@@ -1,5 +1,6 @@
 import pandas as pd
 import csv
+import datetime
 
 def txt_to_csv(file_path):
     # Script to convert the ratings and reviews txt files to csv files
@@ -24,3 +25,8 @@ def txt_to_csv(file_path):
         writer = csv.DictWriter(file, fieldnames=reviews_data[0].keys())
         writer.writeheader()
         writer.writerows(reviews_data)
+
+
+def convert_unix_timestamp(unix_timestamp):
+    timestamp = datetime.datetime.utcfromtimestamp(unix_timestamp)
+    return timestamp
