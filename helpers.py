@@ -70,3 +70,50 @@ def location_style_stats(ratings_reviews, users, year, loc_review_threshold, loc
     location_style = location_style[location_style['number'] >= loc_style_threshold]
 
     return location_style
+
+
+def location_brewery_country_stats(ratings, users, breweries, year, loc_review_threshold, loc_brewery_threshold):
+    ratings['date'] = ratings['date'].apply(convert_unix_timestamp)
+
+    year_filter = ratings['date'].dt.year == year
+    ratings = ratings.loc[year_filter]
+
+    ratings = pd.merge(ratings, users[['user_id', 'location']], on='user_id')
+
+    location_counts = ratings['location'].value_counts()
+    valid_locations = location_counts[location_counts >= loc_review_threshold].index
+    ratings = ratings[ratings['location'].isin(valid_locations)]
+
+    breweries = breweries.rename(columns={'location': 'brewery_location'})
+    ratings = pd.merge(ratings, breweries[['brewery_location', 'id']], left_on='brewery_id',
+                               right_on='id')
+
+    ratings_gb_loc_brew_loc = ratings.groupby(['location', 'brewery_location'])
+    location_brewery_country = ratings_gb_loc_brew_loc.size().reset_index(name='number')
+    location_brewery_country['mean_rating'] = \
+        ratings_gb_loc_brew_loc['rating'].mean().reset_index(name='mean_rating')[
+            'mean_rating']
+
+    ratings_gb_loc = ratings.groupby('location')
+    ratings_loc = ratings_gb_loc.size().reset_index(name='total_loc_number')
+    ratings_loc['location_mean'] = \
+    ratings_gb_loc['rating'].mean().reset_index(name='location_mean')[
+        'location_mean']
+    ratings_loc['location_std'] = \
+    ratings_gb_loc['rating'].std().reset_index(name='location_std')[
+        'location_std']
+
+    location_brewery_country = pd.merge(location_brewery_country, ratings_loc, on='location', how='inner')
+
+    location_brewery_country['popularity_percentage'] = 100 * (location_brewery_country['number'] / location_brewery_country['total_loc_number'])
+
+    location_brewery_country = location_brewery_country[
+        ['location', 'brewery_location', 'number', 'total_loc_number', 'popularity_percentage', 'mean_rating', 'location_mean',
+         'location_std']]
+    location_brewery_country['z_score'] = (location_brewery_country['mean_rating'] - location_brewery_country['location_mean']) / location_brewery_country[
+        'location_std']
+
+    location_brewery_country = location_brewery_country[location_brewery_country['number'] >= loc_brewery_threshold]
+
+    return location_brewery_country
+
