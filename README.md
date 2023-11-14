@@ -9,13 +9,13 @@ We propose in this study to analyze how different locale's beer preferences chan
 
 ## Research Questions
 
-1. What style of beers have the highest rating, and alternatively, which ones consumed the most? Among the different categories that are given such as palate, taste, creativity, what plays the biggest role in determining the style rating and the consumption? Does it differ from region to region. 
+1. What style of beers have the highest rating, and alternatively, which ones are consumed the most? Among the different categories that are given such as palate, taste, and creativity, what plays the biggest role in determining the style rating and the consumption? Does it differ from region to region? 
 
-2. How does the popularity and style rating for each type of beer change over the years for a specific location. For each region of interest, we want to look at the distribution of beers they are consuming as well as the beers they are giving the highest ratings too, and seeing if that is spreading out more with time. 
+2. How does the popularity and style rating for each type of beer change over the years for a specific location? For each region of interest, we want to look at the distribution of beers they are consuming and the beers they are giving the highest ratings to, and see if that is spreading out more with time. 
 
-3. Do some countries mirror the same habits of other countries in terms of metrics we defined above, and if so, how closely are these countries linked. We especially want to investigate if there is a correlation between the types of beer that they are consuming and the distance between two regions. For example, we'd expect that over time due to increased globalization, Swiss people would get access to more French beer because the two countries are so close in a geographic sense, but it would be more surprising if Americans suddenly started consuming Australian beer. 
+3. Do some countries mirror the same habits of other countries in terms of the metrics we defined above, and if so, how closely are these countries linked? We especially want to investigate if there is a correlation between the types of beer that they are consuming and the distance between two regions. For example, we'd expect that over time due to increased globalization, Swiss people would get access to more French beer because the two countries are so close in a geographic sense, but it would be more surprising if Americans suddenly started consuming Australian beer. 
 
-4. Can we notice some general trends in terms of the distributions of beer that countries consume over time, and how does it shift? Is the world's beer preference in terms of style rating and consumption becoming more homogenous? 
+4. Can we notice some general trends regarding the distributions of beer that countries consume over time, and how does it shift? Is the world's beer preference in terms of style rating and consumption becoming more homogenous, or are beer preferences still generally confined to a specific region
 
 ## Additional Datasets 
 
