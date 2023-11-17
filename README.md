@@ -10,13 +10,14 @@ We propose in this study to analyze how different regions' beer preferences chan
 
 ## Research Questions
 
-1.  The first question we want to ask is what beers are the most popular and what factors of a beer determine popularity. To do this, we have the specific subquestions: What style of beers have the highest rating, and alternatively, which ones are consumed the most? Among the different categories that are given such as palate, taste, and creativity, what plays the biggest role in determining the style rating and the consumption? 
+1. How does the popularity and style rating for each type of beer change over the years for a specific location? For each region of interest, we want to look at the distribution of beers they are consuming and the beers they are giving the highest ratings to, and see if that is changing with time. 
 
-2. Is the world's beer preference in terms of style rating and consumption becoming more similar over time, or are beer preferences still generally confined to a specific region
+2. Overall, what styles of beer are consumed the most and which get the highest rating? Is there a specific location that produces higher beer scores for each brewery?
 
-2. How does the popularity and style rating for each type of beer change over the years for a specific location? For each region of interest, we want to look at the distribution of beers they are consuming and the beers they are giving the highest ratings to, and see if that is spreading out more with time. 
+3. What factors in the beer between taste, aroma, and palate contribute most to a higher rating value? 
 
-3. Do some countries share the same habits of other countries in terms of the metrics we defined above, and if so, how closely are these countries linked? We especially want to investigate if there is a correlation between the types of beer that they are consuming and the distance between the two regions. 
+4. Do some countries share the same habits of other countries in terms of the metrics we defined above, and if so, how closely are these countries linked? We especially want to investigate if there is a correlation between the types of beer that they are consuming and the distance between the two regions. 
+
 
 
 
