@@ -1,87 +1,101 @@
 # ada-2023-project-vivalavada
 ada-2023-project-vivalavada created by GitHub Classroom
 
-## Question: How do beer trends evolve with time and location? 
-
+## Cheers to Change: Exploring Temporal and Spatial Dynamics in Beer Trends
 
 ## Abstract 
 
-We propose in this study to analyze how different regions' beer preferences change with regard to the distance between neighboring places over time. As technology and transportation has increased, for example, we want to see if Canadians may drink more beer from the United States over time because of their relative proximity as opposed to drinking more beer from France since France is further away. We shall investigate many different metrics to check the popularity of different styles of beer over time, such as the styles that are most consumed, the styles with the highest ratings, and the number of breweries that primarily produce a certain style. Our motivation is to see whether countries that are close together geographically have become more interconnected over time through the lens of beer, and what factors make certain styles popular. 
+We propose in this study to analyze what are the beer trends by location, where do the trends originate, and how their evaluation and spreading over time reflects interconnection between countries. We shall make use of different ways to define a "beer trend" for a given location, such as the beer styles that are the most consumed, the beer styles with the highest ratings, the most popular beer producers (brewery or country), or the highest valued beer aspect (taste, aroma, etc.). Our motivation is to investigate whether countries that are close together, either geographically or socio-economically, have become more interconnected over time through the lens of beer and to discover the underlying factors playing a role in forming and shifting of beer trends.
+
+Note: The beer dataset does not have enough data for beer trend analysis for each year and location. After initial preprocessing and analysis of data, we have decided to consider only the below given time range and location set for further analysis:
+
+Time range: years from 2006 to 2017, including 2006 and 2017.
+Location set: All states of U.S. except South Dakota (49 states), Iceland, Denmark, Canada, Norway, Sweden, Belgium, New Zealand, Ireland, Finland, Scotland, Australia, Netherlands, Luxembourg, England, Poland, Croatia, Northern Ireland, Spain, Italy, Germany, France and Brazil.
+
+We regard each state of U.S. as a separate location rather than naming them all U.S.A. This is because most of the data comes from different states of U.S and it is a much bigger country than the other countries in our list so that reducing them all to a single name and location would waste too much data. Because of this decision, we call this a "location set" rather than a "country set".
+
 
 ## Research Questions
 
-1. How does the popularity and style rating for each type of beer change over the years for a specific location? For each region of interest, we want to look at the distribution of beers they are consuming and the beers they are giving the highest ratings to, and see if that is changing with time. 
+1. According to our above-given beer trend definitions, to what degree are we able to observe beer trends in our dataset, and if yes, how do they differ from location to location?
 
-2. Overall, what styles of beer are rated the most, and which get the highest rating? Is there a specific location that produces higher beer scores for each brewery?
+2. How do these beer consumption habits change over the years for each location? Where do these trends originate and how far/fast do they spread? How long do they last?
 
-3. What factors in the beer between taste, aroma, and palate contribute most to a higher rating value? 
+3. Are the beer trends of some locations considerably similar to that of some other locations? If yes, does the geographical distance between the locations play an important role in this? What could be the other reasons for such similarities (cultural ressemblance, brewery locations, wealth, etc.)?
 
-4. Do some countries share the same trends of other countries in terms of the style of beers they are consuming, and if so, we would like to look at the reason behind this. We would like to see if there is a correlation between distance of two countries and their beer trends, differences in wealth, or differences in language. 
-
-
+4. Apart from the local beer trends followed in separate locations, do the overall beer consumption habits (trends) of all the locations tend to follow a particular pattern such that there are global trends? Which kind of trends (local vs. global) is more effective at each location and what could be the underlying reasons? As we know, “globalization” of the earth significantly increased the availability of long-distance transportation, communication, and trade. As the consequences of this globalization, did global trends begin to dominate over local ones?
 
 
 ## Additional Datasets 
 
-1. [Country Dataset](https://www.kaggle.com/datasets/iamsouravbanerjee/world-population-dataset): We use this dataset to get the percentage of users. Population also gives us a further parameter to analyze the trends of each country. We merged our existing datasets of users, ratings, and breweries with the population dataset based on the attribute of location. A lot of users were from countries outside the US, while others were from states inside the US. We used the latest population year that they gave us (*which was 2022*)
+1. [World Population Dataset](https://www.kaggle.com/datasets/iamsouravbanerjee/world-population-dataset): This dataset gives us population of each country by year, which is used to calculate the percentage of population of each country that have accounts in either of the websites. Population also gives us a further parameter to analyze the trends of each country. We merged our existing datasets of users, ratings, and breweries with the population dataset based on the attribute of location. We considered the year 2010 by reading the populations, which is a suitable year for our time range, from 2006 to 2017.
 
-2. [Us State Population Dataset](https://www.census.gov/data/tables/time-series/demo/popest/2020s-state-total.html): We use this dataset with the same goal as the previous one, but for distinct states in the United States. Multiple years were given, but we chose 2010 to be consistent with the country years as well.
+2. [Us State Population Dataset](https://www.census.gov/data/tables/time-series/demo/popest/2020s-state-total.html): We use this dataset with the same goal as the previous one, but for distinct states in the United States. Again, consider only the data from 2010 to be consistent with the country years.
 
 3. [Languages Dataset](https://resourcewatch.org/data/explore/soc_071_world_languages?section=Discover&selectedCollection=&zoom=3&lat=0&lng=0&pitch=0&bearing=0&basemap=dark&labels=light&layers=%5B%7B%22dataset%22%3A%2220662342-dcdd-4a42-9f58-bcc80217de71%22%2C%22opacity%22%3A1%2C%22layer%22%3A%22f2d76e6b-060d-4dc9-83ea-284bef6b2aae%22%7D%5D&aoi=&page=1&sort=most-viewed&sortDirection=-1)
-  This dataset gives information on what languages each country primarily speaks. It can confound the results on the similarity between the two countries' beer preferences. Our hypothesis is that same language should facilitate trade and culture. The dataset has 233 countries and has the top 3 official languages for each country. We decided to use only the official language for each country.
+  This dataset gives information on what languages each country primarily speaks. It can confound the results on the similarity between the two countries' beer preferences. Our hypothesis is that same language should facilitate trade and culture. The dataset has 233 countries and has the top 3 official languages for each country.
 
 4.  [US State Wealth Dataset](https://ssti.org/blog/useful-stats-capita-gross-state-product-1998-2018))
-   This dataset gives the GDP per capita for each state in 2018. It also gives the percentage change over a 10 period time. Therefore, we can apply that change to see the GDP per capita for each US state in 2008 which more closely reflects our ratings dataset. 
+   This dataset gives the GDP per capita for each state in 2018. It also gives the percentage change over a 10 period time. Therefore, we can apply that change to see the GDP per capita for each US state in 2008 which falls into our year range of interest. 
 
- 5. [Country Wealth dataset](https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?end=2008&start=2007)
-    This dataset gives the GDP per capita for each country for each year in terms of 2012 US dollars. In order to combine with the states dataset, we will only look at the year of 2008 only, and convert the value of the 2012 US dollar to 2023 to remain consistent. We shall use an [inflation calculator](https://www.bls.gov/data/inflation_calculator.htm) to make the adjustment. 
+5. [Country Wealth dataset](https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?end=2008&start=2007)
+   This dataset gives the GDP per capita for each country for each year in terms of 2012 US dollars. In order to combine with the states dataset, we will only look at the year of 2008 only, and convert the value of the 2012 US dollar to its corresponding value in 2008 so that the values are comparable with the previous dataset. We shall use an [inflation calculator](https://www.bls.gov/data/inflation_calculator.htm) to make the adjustment.
+   
 
 ## Methods 
 
 ### *Step 1: Preprocessing*
 
-##### *1. Merging*:
-We were given data from two different websites - RateBeer and BeerAdvocate. To maximize our data, we merged the two datasets. We removed the intersection of users and ratings where they were matched to avoid duplicates using the matched dataset that contained users and ratings that were in both websites. We combined on the unique id’s in each field.
+##### *1. Merging*
+
+We were given data from two different websites - RateBeer and BeerAdvocate. in order not to waste any data, we merged the two datasets. The exact method followed by merging is given with comments in the notebook. To summarize, we removed the intersection of users and ratings from the data of individual websites to avoid duplicates using the matched dataset. We then added the intersection back again. Furthermore, we mapped every beer style and every beer_id, user_id and brewery_id in the matched data to its RateBeer version.
 
 ##### *2. Normalizing the Data*
 
-We want to normalize the data for each aspect of ratings such as palate, taste, and aroma by subtracting each value from the mean of each year and then dividing by the standard deviation to reduce bias.
+We standardized the ratings and each aspect of the ratings (appareance, palate, taste, and aroma) by subtracting the mean of the year for the given website and then dividing by the standard deviation of that year. This way, biases coming from different level of ratings from the two websites and biases of rating inflations or deflations between different years are eliminated. As an end-effect, all the ratings in the merged dataset are directly comparable to each other.
 
 ##### *3. Filtering the Data*
 
-We plotted the data and saw very few beers with higher than 50% alcohol percentages so we removed those beers. We also removed users, and any ratings with users who had over 20,000 ratings as that was an outlier. 
+We visualized the data and removed unreliable data points. For example, there were a few beers with higher than 50% alcohol percentages or users more than 20,000 ratings. Such datapoints are eliminated for more reliable future analysis.
 
 ##### *4. Reading in additional population datasets*
 
 Our data consisted of users with locations and breweries with locations. The locations were either countries or states within the United States, so we combined two separate datasets on countries and US state populations to create a general population data frame. 
 
-##### *5. Selecting Locations*
-For each location, we measured the number of distinct users divided by the total population and we only wanted to look at values where that rating was high. We also excluded countries with too few users.
+##### *5. Selecting Year Range and Locations*
+
+In the notebook, we analysed for which years we have enough amount of data for analysis and decided to include only the years after and including 2006. For each location, we measured the number of distinct users divided by the total population and we only included locations where the percentage of users is high enough. We also put a condition that for each year of interest the valid locations should at least a predefined number of ratings. We ended up with 71 locations that satisfy all the conditions.
 
 ### *Step 2: Visualizations and Initial Analysis*
 
-We plotted the locations we filtered out on a map, using the latitude and longitude coordinates from open street maps for each coordinate. We also plotted the brewery locations on a heatmap using a similar process. 
+We plotted the locations we filtered out on a map, using the latitude and longitude coordinates from open street maps for each coordinate. We also plotted the brewery locations on a heatmap using a similar process. We then implemented some initial methods to find the most popular or highest rated beer styles/beer producers. We also fitted a basic OLS model to see the coefficients of each beer aspect (taste, appearance, etc.) to the overall rating. Lastly, we have found the Pearson correlation coeff. and corresponding p_value between the overall rating and alcohol by volume. Although basic, these analyses allowed us to better understand our data.
 
-### *Step 3: Answering the research questions*
+
+### *Step 3: Ideas for answering the research questions*
  
-##### *Questions 1 and 2*:
-We extract the most popular beer style and beer production place (brewery location) by quantity for each location by looking at the total number of ratings by year. We also put a threshold of 5 that needs to be satisfied for a location-style pair to be considered in this analysis. We will also look at the highest-rated beer style given where the number of beers for that style needs to cross a certain threshold. We look at each of the top style for each country, and then do groupings to see the distribution of different styles and how similar they are.
+#### *Question 1:
+
+We extract the most popular (in quantity) beer style and beer production place (brewery location) for each location by looking at the total number of ratings. We divide the number of ratings to the total number of ratings for that location to get a comparable result.
+
+For investigating the beer styles and brewery locations with highest ratings, we take the average of the ratings and compare them, however we also put a threshold on number of ratings to be satisfied for being considered in this analysis. We standardize the ratings using location mean and standard deviation to get a comparable result. 
+
+To find the highest valued beer aspect, we can run Ordinary Least Squares Linear Regression on our ratings for different locations. We were also thinking about using decision trees to predict rating based on the scores that people put in for each of the various aspects and to predict consumption. We will then test our dataset on a different subset of data to measure the accuracy.
+
+#### *Question 2*
+
+We can do the trend analysis described in question 1 for different years for each location. Then we can check the locations which have the same or similar trends, and the years they exhibit that trend. We can visualize spread and duration of trends using colors in world map.
 
 #### *Question 3* 
-We can run Ordinary Least Squares Linear Regression on our ratings to see which aspects are the most important factors for giving each aspect a weight in comparison to taste. We were also thinking about using decision trees to predict taste based on the scores that people put in for each of the various aspects and to predict consumption. We will then test our dataset on a different subset of data to measure the accuracy.
+
+We will study trends and trend evolutions to determine interconnexion between countries. This could be done with graph analysis, with weights combining different factors (information on the countries). We then want to match the locations based on 3 of the 4 categories: number of users divided by population, distance, language, and wealth. After matching, we can investigate the relationship between beer consumption trends of locations and to the property that we have not matched. Moreover, we can do t-tests of the data to see which factors between language, wealth, distance, and proportion of beer drinkers affect the trends the most, and whether there is a correlation.
 
 #### *Question 4*
 
-We will define the definition of a trend. For now, it is a style preferred in a number of countries superior to a threshold. This threshold will be optimized. We will then study trends evolutions to determine interconnexion between countries. This could be done with graph analysis, with weights combining different factors (informations on the countries).
-We then want to pair the most similar locations based on 3 of the 4 categories between the number of users divided by population, distance, language, and wealth. The result is that we get locations that could be comparable on those factors. Then, we would sample half the matches with similar languages and look at their beer trends, and then sample half the matches with different matches and look at their beer trends. We can do t-tests of the data to see which factors between language, wealth, distance, and proportion of beer drinkers affect the trends the most, and if there is a correlation. 
+We can conduct the trend analysis described in question 1 globally for each year. If there is a global trend, we can check the similarity between that and the consumption trends of the other locations. For each year we can find which locations follow a similar trend to global one and we can investigate the reasons behind it using the methods in question 3. Moreover, we can look at the number of locations which exhibits more global trend compared to others and check if this number gets larger over the years.
 
-### *Visualization*
+### *Step 4: Data story with visualizations*
 
-We plan to vizualize the results on interactive heatmaps, where users can select the studied parameters. 
-
-
-
-
+Using all the findings we obtained by answering the research questions, we plan to create a data story enriched by visualizations such as interactive plots. 
 
 
 ## Planning
@@ -104,17 +118,11 @@ We plan to vizualize the results on interactive heatmaps, where users can select
  - Finish the datastory
  - Finish the visualization
 
+
 ## Team organization
 
 Tugba: Important aspects of beers using decision trees, create data story
-
 Yagiz: Important aspects of beers with OLS, create data story
-
 Hadrien: t-test for parameters that influence beer taste, representation of interaction on maps
-
 Rishi: Interactive heatmap
-
 Iris: Trend definition and graph analysis between countries
-
-
-
