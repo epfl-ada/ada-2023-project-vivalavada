@@ -122,7 +122,11 @@ Using all the findings we obtained by answering the research questions, we plan 
 ## Team organization
 
 Tugba: Important aspects of beers using decision trees, create data story
+
 Yagiz: Important aspects of beers with OLS, create data story
+
 Hadrien: t-test for parameters that influence beer taste, representation of interaction on maps
+
 Rishi: Interactive heatmap
+
 Iris: Trend definition and graph analysis between countries
