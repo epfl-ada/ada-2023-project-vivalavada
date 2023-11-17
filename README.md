@@ -30,6 +30,11 @@ We propose in this study to analyze how different regions' beer preferences chan
 3. [Languages Dataset](https://resourcewatch.org/data/explore/soc_071_world_languages?section=Discover&selectedCollection=&zoom=3&lat=0&lng=0&pitch=0&bearing=0&basemap=dark&labels=light&layers=%5B%7B%22dataset%22%3A%2220662342-dcdd-4a42-9f58-bcc80217de71%22%2C%22opacity%22%3A1%2C%22layer%22%3A%22f2d76e6b-060d-4dc9-83ea-284bef6b2aae%22%7D%5D&aoi=&page=1&sort=most-viewed&sortDirection=-1)
   This dataset gives information on what languages each country primarily speaks. It can confound the results on the similarity between the two countries' beer preferences. Our hypothesis is that same language should facilitate trade and culture. The dataset has 233 countries and has the top 3 official languages for each country. We decided to use only the official language for each country.
 
+4.  [US State Wealth Dataset]([https://resourcewatch.org/data/explore/soc_071_world_languages?section=Discover&selectedCollection=&zoom=3&lat=0&lng=0&pitch=0&bearing=0&basemap=dark&labels=light&layers=%5B%7B%22dataset%22%3A%2220662342-dcdd-4a42-9f58-bcc80217de71%22%2C%22opacity%22%3A1%2C%22layer%22%3A%22f2d76e6b-060d-4dc9-83ea-284bef6b2aae%22%7D%5D&aoi=&page=1&sort=most-viewed&sortDirection=-1](https://worldpopulationreview.com/state-rankings/income-inequality-by-state))
+   This dataset gives the income distributions of each US state which we can again use to analyze each location. It also gives the gini index which is a measure of the income disparity of a location as it shows the extent to which the income distribution differs from a normal distribution. This can be a factor we look at as well.
+
+ 5. [Country Wealth dataset](https://www.wider.unu.edu/database/world-income-inequality-database-wiid#WIIDcomp)
+    This dataset does the same as the one above except it gives the income distribution and gini index for each country rather than each US state. 
 
 ## Methods 
 
