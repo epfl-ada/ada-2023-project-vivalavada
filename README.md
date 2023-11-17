@@ -41,11 +41,11 @@ We propose in this study to analyze how different locale's beer preferences chan
 
 1. Analyze the most popular styles:  extract the ratings of each style, and the number of ratings per style. In order to study the influence of the different aspects of a beer, a regression will be made, and we will compute the correlation between each sub-rating and the overall rating. These studies will be made for the different locations. 
 
-2. Analyze of the variations in time of the previous metrics (for each year, or for each period during one year). These first analysis will allow us to define a trend: for now, the definition would be a style preferred in a number of countries superior to a threshold. Once a final definition of trend will be adopted, we will be able to study how they evolve, for example their duration.
+2. Analyze of the variations in time of the previous metrics (for each year, or for each period during one year). These first analysis will allow us to define a trend: for now, the definition would be a style preferred in a number of countries superior to a threshold. This threshold will be optimized according to the results of preferred styles obtained. Once a final definition of trend will be adopted, we will be able to study how they evolve, for example their duration.
 
 3. Once those trends are analyzed, we will be able to compare the countries and study their inter-connexion. We will create a graph of the countries, with the weights influenced by the number of shared trends, but also other aspects as the physical distance or the cultural differences (such as language). Correlation between the difference in trends and different countries informations could also be computed. 
 
-4. Finally, we will be able to analyze the patterns of the trends, for example by comparing the number of trends with time, or their different aspects mentioned before. It will give us insights on the evolution of the links between the countries. 
+4. Finally, we will be able to analyze the patterns of the trends, for example by comparing the number of trends with time, or their different aspects mentioned before. Statistical analysis will be led, to quantify if there is a relationship between the countries. 
 
 ### Step 3: Visualization
 
