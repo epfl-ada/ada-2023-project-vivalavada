@@ -12,11 +12,11 @@ We propose in this study to analyze how different regions' beer preferences chan
 
 1. How does the popularity and style rating for each type of beer change over the years for a specific location? For each region of interest, we want to look at the distribution of beers they are consuming and the beers they are giving the highest ratings to, and see if that is changing with time. 
 
-2. Overall, what styles of beer are consumed the most and which get the highest rating? Is there a specific location that produces higher beer scores for each brewery?
+2. Overall, what styles of beer are consumed the most, and which get the highest rating? Is there a specific location that produces higher beer scores for each brewery?
 
 3. What factors in the beer between taste, aroma, and palate contribute most to a higher rating value? 
 
-4. Do some countries share the same habits of other countries in terms of the metrics we defined above, and if so, how closely are these countries linked? We especially want to investigate if there is a correlation between the types of beer that they are consuming and the distance between the two regions. 
+4. Do some countries share the same trends of other countries in terms of the style of beers they are consuming, and if so, we would like to look at the reason behind this. We would like to see if there is a correlation between distance of two countries and their beer trends, differences in wealth, or differences in language. 
 
 
 
