@@ -29,37 +29,30 @@ We propose in this study to analyze how different locale's beer preferences chan
 
 ## Methods 
 
-### Preprocessing
+### Step 1: Preprocessing 
 
-1. Filtering
-   
- - NaN and outliers removal: NaN were not removed for now. Indeed, there are no lines with only NaN (no rating is missing for example), and incomplete lines can be relevant, as we can always have the rating of the beer. Outliers were found in the beers, for the alcohol content (with alcohol content reaching 70°).  As stated in [Beers Wikipedia](https://en.wikipedia.org/wiki/Beer#:~:text=Beer%20ranges%20from%20less%20than,by%20the%20freeze%2Ddistilling%20process). , beers with alcohol content >20° are very rare, and the maximal degree is 50°.
- - Duplicates removal: As we don’t want to take into account the same rating of the same user for the same beer (at the same period of time), we looked for duplicates taking into account those features. We found 34 duplicates, that were removed (keeping only one of the two). 
+1. Filtering: In this step, we removed the outliers. For now, NaN were not remove, since all rows contain relevant information. Outliers were found, with beers having an alcohol content reaching 70° wich is very unprobable([Beers Wikipedia](https://en.wikipedia.org/wiki/Beer#:~:text=Beer%20ranges%20from%20less%20than,by%20the%20freeze%2Ddistilling%20process)). 34 duplicates in ratings were found (same user rates the same beer, the same year) and only one was kept. The data was also filtered to only keep locations with sufficient number of ratings. 
  
-2. Merging
-   
-Merge the data from the two websites: The data of the two websites were merged, as it allowed to double the number of data, compared to only take one. However, this merging needed to take into account multiple factors. First, some users and ratings were duplicated between the two ratings. The duplicated rating were all removed. The deplicated users were merged together, by keep the user-id corresponding to RateBeer. Secondly, the style’s name weren’t the same between the websites. Using the beers.csv of the matched_dataset, a dictionary was created, associating the beer style of BeerAdvocate to the most frequent RateBeer style associated.
+2. Merging: We merged the data from the two websites in order to double the number of data. However, this merging needed to take into account multiple factors. First, some users and ratings were duplicated between the two websites. The duplicated rating were all removed. The deplicated users were merged together, by keeping the user-id corresponding to RateBeer. Secondly, the style’s name weren’t the same between the websites. Using the beers.csv of the matched_dataset, a dictionary was created, associating the beer style of BeerAdvocate to the most frequent RateBeer style associated.
 
-3. Normalization of the ratings
-   
-As we see a big difference in ratings between the websites, and an overall difference in rating with the years, we computed z-score for each rating and sub-rating. 
-It allows us to take into account those changes, with the hypothesis that the change in rating with the year is not due to the quality of the beer itself, but to the propensity to rate higher.  The z-score is then taken using the mean and standard deviation for each website and for each year.
+3. Normalization of the ratings: Since overall mean in rating tends to increase with time, and that it is disparate accross websites, we computed z-score for each rating and sub-rating. The z-score is then taken using the mean and standard deviation for each website and for each year.
 
-### Answering research questions: 
+### Step 2: Answering research questions 
 
-In order to be able to study the trends between countries, it will first be important to analyze the most popular styles. For that, we will analyze the ratings of each style, and the number of reviews per style. In order to study the influence of the different aspects of a beer, a regression could be made, and a correlation computation of between each sub-rating and the overall rating. These studies will be made for the different locations (countries or states of the US). 
+1. Analyze the most popular styles:  extract the ratings of each style, and the number of ratings per style. In order to study the influence of the different aspects of a beer, a regression will be made, and we will compute the correlation between each sub-rating and the overall rating. These studies will be made for the different locations. 
 
-Then , this analysis will be led considering the variations in time (for each year, or for each period during one year).
-These first analysis will allow us to define a trend: for now, the definition would be a style preferred in a number of countries superior to a threshold (to determine with further analysis). Once a final definition of trend will be adopted, we will be able to study how they evolve, for example their duration.
+2. Analyze of the variations in time of the previous metrics (for each year, or for each period during one year). These first analysis will allow us to define a trend: for now, the definition would be a style preferred in a number of countries superior to a threshold. Once a final definition of trend will be adopted, we will be able to study how they evolve, for example their duration.
 
-Once those trends are analyzed, we will be able to compare the countries and study their inter-connexion. We could for example create a network of the countries, with the weights influenced by the number of shared trends, but also other aspects as the physical distance or the cultural differences (such as language). Correlation between the difference in trends and different countries informations could also be computed. 
+3. Once those trends are analyzed, we will be able to compare the countries and study their inter-connexion. We will create a graph of the countries, with the weights influenced by the number of shared trends, but also other aspects as the physical distance or the cultural differences (such as language). Correlation between the difference in trends and different countries informations could also be computed. 
 
-Finally, we will be able to analyze the patterns of the trends, for example by comparing the number of trends with time, or their different aspects mentioned before.It can for example give us insight on the evolution of the links between the countries. 
+4. Finally, we will be able to analyze the patterns of the trends, for example by comparing the number of trends with time, or their different aspects mentioned before. It will give us insights on the evolution of the links between the countries. 
 
-### Visualization
+### Step 3: Visualization
 
-In order to visualize the data, our goal is to create an interactive map. We could set parameters such as timescale and countries to study. Then, the map could show the evolution of the patterns with time. 
+The goal is to create an interactive map. We could set parameters such as timescale, styles and countries to study. Then, the map could show the evolution of the trends with time. 
 
 ## Planning
+
+## Team organization
 
 
