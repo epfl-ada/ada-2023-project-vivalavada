@@ -73,7 +73,7 @@ We plotted the locations we filtered out on a map, using the latitude and longit
 
 ### *Step 3: Ideas for answering the research questions*
  
-#### *Question 1:
+#### *Question 1*
 
 We extract the most popular (in quantity) beer style and beer production place (brewery location) for each location by looking at the total number of ratings. We divide the number of ratings to the total number of ratings for that location to get a comparable result.
 
