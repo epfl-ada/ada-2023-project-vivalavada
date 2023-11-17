@@ -63,6 +63,16 @@ We plotted the locations we filtered out on a map, using the latitude and longit
 We extract the most popular beer style by quantity for each location by looking at the total number of ratings by year. We also put a threshold of 5 that needs to be satisfied for a location-style pair to be considered in this analysis. We will also look at the highest-rated beer style given where the number of beers for that style needs to cross a certain threshold.  
 
 ##### *Question 2*:
+We extract the most popular (in quantity) beer production place (brewery location) for each location by looking at the total number of ratings. We also put a threshold of 5 that needs to be satisfied for a location-brewery location pair to be considered in this analysis. We look at each of the top style for each country, and then do groupings to see the distribution of different styles and how similar they are. We can also put it on an interactive heatmap to show differences for each region, and also so users can select year by year. 
+
+#### *Question 3* 
+We can run Ordinary Least Squares Linear Regression on our ratings to see which aspects are the most important factors for giving each aspect a weight in comparison to taste. We were also thinking about using decision trees to predict taste based on the scores that people put in for each of the various aspects and to predict consumption. We will then test our dataset on a different subset of data to measure the accuracy 
+
+#### *Question 4*
+
+We first want to pair the most similar locations based on 3 of the 4 categories between the number of users divided by population, distance, language, and wealth. The result is that we get locations that could be relatively close in distance, have the same percentage of users who consume beer, and have similar levels of income. Then, we would sample half the matches with similar languages and look at their beer trends, and then sample half the matches with different matches and look at their beer trends. We can do t-tests of the data to see which factors between language, wealth, distance, and proportion of beer drinkers affect the trends the most, and if there is a correlation. 
+
+
 
 
 
