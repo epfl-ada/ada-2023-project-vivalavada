@@ -9,8 +9,9 @@ We propose in this study to analyze what are the beer trends by location, where 
 
 Note: The beer dataset does not have enough data for beer trend analysis for each year and location. After initial preprocessing and analysis of data, we have decided to consider only the below given time range and location set for further analysis:
 
-Time range: years from 2006 to 2017, including 2006 and 2017.
-Location set: All states of U.S. except South Dakota (49 states), Iceland, Denmark, Canada, Norway, Sweden, Belgium, New Zealand, Ireland, Finland, Scotland, Australia, Netherlands, Luxembourg, England, Poland, Croatia, Northern Ireland, Spain, Italy, Germany, France and Brazil.
+**Time range:** years from 2006 to 2017, including 2006 and 2017.
+
+**Location set:** All states of U.S. except South Dakota (49 states), Iceland, Denmark, Canada, Norway, Sweden, Belgium, New Zealand, Ireland, Finland, Scotland, Australia, Netherlands, Luxembourg, England, Poland, Croatia, Northern Ireland, Spain, Italy, Germany, France and Brazil.
 
 We regard each state of U.S. as a separate location rather than naming them all U.S.A. This is because most of the data comes from different states of U.S and it is a much bigger country than the other countries in our list so that reducing them all to a single name and location would waste too much data. Because of this decision, we call this a "location set" rather than a "country set".
 
