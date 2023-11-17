@@ -3,19 +3,22 @@ ada-2023-project-vivalavada created by GitHub Classroom
 
 ## How do beer trends evolve with time? 
 
+
 ## Abstract 
 
-We propose in this study to analyze how different locale's beer preferences change with regards to the distance between different regions over time. As technology and transportation has increased, for example, we want to see if Canadians may drink more beer from the United States over time because of their relative proximity as opposed to drinking more beer from France since France is further away. Our dataset gives the style for each rating that people drink, and we can also measure how much people from a specific region are drinking each style. We shall investigate many different metrics to check the popularity of different styles of beer over time, such as the styles that are most consumed, the styles with the highest ratings, and the number of breweries that primarily produce a certain style. Our motivation is to see whether countries that are close together geographically have become more interconnected over time through the lens of beer. 
+We propose in this study to analyze how different regions' beer preferences change with regard to the distance between neighboring places over time. As technology and transportation has increased, for example, we want to see if Canadians may drink more beer from the United States over time because of their relative proximity as opposed to drinking more beer from France since France is further away. We shall investigate many different metrics to check the popularity of different styles of beer over time, such as the styles that are most consumed, the styles with the highest ratings, and the number of breweries that primarily produce a certain style. Our motivation is to see whether countries that are close together geographically have become more interconnected over time through the lens of beer, and what factors make certain styles popular. 
 
 ## Research Questions
 
-1. What style of beers have the highest rating, and alternatively, which ones are consumed the most? Among the different categories that are given such as palate, taste, and creativity, what plays the biggest role in determining the style rating and the consumption? Does it differ from region to region? 
+1.  The first question we want to ask is what beers are the most popular and what factors of a beer determine popularity. To do this, we have the specific subquestions: What style of beers have the highest rating, and alternatively, which ones are consumed the most? Among the different categories that are given such as palate, taste, and creativity, what plays the biggest role in determining the style rating and the consumption? 
+
+2. Is the world's beer preference in terms of style rating and consumption becoming more similar over time, or are beer preferences still generally confined to a specific region
 
 2. How does the popularity and style rating for each type of beer change over the years for a specific location? For each region of interest, we want to look at the distribution of beers they are consuming and the beers they are giving the highest ratings to, and see if that is spreading out more with time. 
 
-3. Do some countries mirror the same habits of other countries in terms of the metrics we defined above, and if so, how closely are these countries linked? We especially want to investigate if there is a correlation between the types of beer that they are consuming and the distance between two regions. For example, we'd expect that over time due to increased globalization, Swiss people would get access to more French beer because the two countries are so close in a geographic sense, but it would be more surprising if Americans suddenly started consuming Australian beer. 
+3. Do some countries share the same habits of other countries in terms of the metrics we defined above, and if so, how closely are these countries linked? We especially want to investigate if there is a correlation between the types of beer that they are consuming and the distance between the two regions. 
 
-4. Can we notice some general trends regarding the distributions of beer that countries consume over time, and how does it shift? Is the world's beer preference in terms of style rating and consumption becoming more homogenous, or are beer preferences still generally confined to a specific region
+
 
 ## Additional Datasets 
 
@@ -29,30 +32,37 @@ We propose in this study to analyze how different locale's beer preferences chan
 
 ## Methods 
 
-### Step 1: Preprocessing 
+### *Step 1: Preprocessing*
 
-1. Filtering: In this step, we removed the outliers. For now, NaN were not remove, since all rows contain relevant information. Outliers were found, with beers having an alcohol content reaching 70° wich is very unprobable([Beers Wikipedia](https://en.wikipedia.org/wiki/Beer#:~:text=Beer%20ranges%20from%20less%20than,by%20the%20freeze%2Ddistilling%20process)). 34 duplicates in ratings were found (same user rates the same beer, the same year) and only one was kept. The data was also filtered to only keep locations with sufficient number of ratings. 
+##### *1. Merging*:
+We were given data from two different websites - RateBeer and BeerAdvocate. To maximize our data, we felt that merging the two datasets would be useful. We removed the intersection of users and ratings where they were matched to avoid duplicates using the matched dataset that contained users and ratings that were in both websites. We combined on the unique id’s in each field.
+
+##### *2. Normalizing the Data*
+
+We want to normalize the data for each aspect of ratings such as palate, taste and aroma by subtracting each value from the mean and then dividing by the standard deviation 
+
+##### *3. Filtering the Data*
+
+We plotted the data and saw very few beers with higher than 50% alcohol percentages so we removed those beers. We also removed users, and any ratings with users who had over 20,000 ratings as that was an outlier. 
+
+##### *4. Reading in additional population datasets*
+
+Our data consisted of users with locations and breweries with locations. The locations were either countries or states within the United States, so we combined two separate datasets on countries and US state populations to create a general population data frame. 
+
+5. Selecting Locations
+For each location, we measured the number of distinct users divided by the total population and we only wanted to look at values where that rating was high. We also excluded countries with too few users.
+
+### *Step 2: Visualizations and Initial Analysis*
+
+We plotted the locations we filtered out on a map, using the latitude and longitude coordinates from open street maps for each coordinate. We also plotted the brewery locations on a heatmap using a similar process. 
+
+### *Step 3: Looking at style preferences over time*
  
-2. Merging: We merged the data from the two websites in order to double the number of data. However, this merging needed to take into account multiple factors. First, some users and ratings were duplicated between the two websites. The duplicated rating were all removed. The deplicated users were merged together, by keeping the user-id corresponding to RateBeer. Secondly, the style’s name weren’t the same between the websites. Using the beers.csv of the matched_dataset, a dictionary was created, associating the beer style of BeerAdvocate to the most frequent RateBeer style associated.
-
-3. Normalization of the ratings: Since overall mean in rating tends to increase with time, and that it is disparate accross websites, we computed z-score for each rating and sub-rating. The z-score is then taken using the mean and standard deviation for each website and for each year.
-
-### Step 2: Answering research questions 
-
-1. Analyze the most popular styles:  extract the ratings of each style, and the number of ratings per style. In order to study the influence of the different aspects of a beer, a regression will be made, and we will compute the correlation between each sub-rating and the overall rating. These studies will be made for the different locations. 
-
-2. Analyze of the variations in time of the previous metrics (for each year, or for each period during one year). These first analysis will allow us to define a trend: for now, the definition would be a style preferred in a number of countries superior to a threshold. This threshold will be optimized according to the results of preferred styles obtained. Once a final definition of trend will be adopted, we will be able to study how they evolve, for example their duration.
-
-3. Once those trends are analyzed, we will be able to compare the countries and study their inter-connexion. We will create a graph of the countries, with the weights influenced by the number of shared trends, but also other aspects as the physical distance or the cultural differences (such as language). Correlation between the difference in trends and different countries informations could also be computed. 
-
-4. Finally, we will be able to analyze the patterns of the trends, for example by comparing the number of trends with time, or their different aspects mentioned before. Statistical analysis will be led, to quantify if there is a relationship between the countries. 
-
-### Step 3: Visualization
-
-The goal is to create an interactive map. We could set parameters such as timescale, styles and countries to study. Then, the map could show the evolution of the trends with time. 
+We extract the highest-rated beer style for each location by looking at the average rating by year. We also put a threshold of 5 that needs to be satisfied for a location-style pair to be considered in this analysis.
 
 ## Planning
 
 ## Team organization
 
+## How do beer trends evolve with time? 
 
