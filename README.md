@@ -1,7 +1,7 @@
 # ada-2023-project-vivalavada
 ada-2023-project-vivalavada created by GitHub Classroom
 
-# 
+## How do beer trends evolve with time? 
 
 ## Abstract 
 
@@ -28,3 +28,32 @@ We propose in this study to analyze how different locale's beer preferences chan
 
 
 ## Methods 
+
+# Preprocessing
+
+1. Filtering
+a ) NaN and outliers removal: NaN were not removed for now. Indeed, there are no lines with only NaN (no rating is missing for example), and incomplete lines can be relevant, as we can always have the rating of the beer. Outliers were found in the beers, for the alcohol content (with alcohol content reaching 70°).  As stated in https://en.wikipedia.org/wiki/Beer#:~:text=Beer%20ranges%20from%20less%20than,by%20the%20freeze%2Ddistilling%20process. , beers with alcohol content >20° are very rare, and the maximal degree is 50°.
+b) Duplicates removal: As we don’t want to take into account the same rating of the same user for the same beer (at the same period of time), we looked for duplicates taking into account those features. We found 34 duplicates, that were removed (keeping only one of the two). 
+
+3. Merging
+Merge the data from the two websites: The data of the two websites were merged, as it allowed to double the number of data, compared to only take one. However, this merging needed to take into account multiple factors. First, some users and ratings were duplicated between the two ratings. The duplicated rating were all removed. The deplicated users were merged together, by keep the user-id corresponding to RateBeer. Secondly, the style’s name weren’t the same between the websites. Using the beers.csv of the matched_dataset, a dictionary was created, associating the beer style of BeerAdvocate to the most frequent RateBeer style associated.
+
+4. Normalization of the ratings
+
+As we see a big difference in ratings between the websites, and an overall difference in rating with the years, we computed z-score for each rating and sub-rating. 
+It allows us to take into account those changes, with the hypothesis that the change in rating with the year is not due to the quality of the beer itself, but to the propensity to rate higher.  The z-score is then taken using the mean and standard deviation for each website and for each year.
+
+# Answering research questions: 
+
+In order to be able to study the trends between countries, it will first be important to analyze the most popular styles. For that, we will analyze the ratings of each style, and the number of reviews per style. In order to study the influence of the different aspects of a beer, a regression could be led, and a correlation computation of between each sub-rating and the overall rating. These studies will be made for the different locations (countries or states of the US). 
+
+Then , this analysis will be led considering the variations in time (for each year, or for each period during one year).
+These first analysis will allow us to define a trend: for now, the definition would be a style preferred in a number of countries superior to a threshold (to determine with further analysis). Once a final definition of trend will be adopted, we will be able to study how they evolve, for example their duration.
+
+Once those trends are analyzed, we will be able to compare the countries and study their inter-connexion. We could for example create a network of the countries, with the weights influenced by the number of shared trends, but also other aspects as the physical distance or the cultural differences (such as language). Correlation between the difference in trends and different countries informations could also be computed. 
+
+Finally, we will be able to analyze the patterns of the trends, for example by comparing the number of trends with time, or their different aspects mentioned before.It can for example give us insight on the evolution of the links between the countries. 
+
+## Planning
+
+
