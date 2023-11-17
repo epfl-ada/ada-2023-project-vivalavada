@@ -40,7 +40,7 @@ We were given data from two different websites - RateBeer and BeerAdvocate. To m
 
 ##### *2. Normalizing the Data*
 
-We want to normalize the data for each aspect of ratings such as palate, taste and aroma by subtracting each value from the mean and then dividing by the standard deviation 
+We want to normalize the data for each aspect of ratings such as palate, taste, and aroma by subtracting each value from the mean of each year and then dividing by the standard deviation to reduce bias.
 
 ##### *3. Filtering the Data*
 
