@@ -100,10 +100,15 @@ We then want to pair the most similar locations based on 3 of the 4 categories b
  - Finish the visualization
 
 ## Team organization
+
 Tugba: Finding the most important aspects of beers with decision trees, create data story
+
 Yagiz: Finding the most important aspects of beers with OLS, create data story
+
 Hadrien: t-test for parameters that influence beer taste, representation of interaction on maps
+
 Rishi: Interactive heatmap
+
 Iris: Trend definition and graph analysis between countries
 
 
