@@ -1,7 +1,7 @@
 # ada-2023-project-vivalavada
 ada-2023-project-vivalavada created by GitHub Classroom
 
-## How do beer trends evolve with time? 
+## Question: How do beer trends evolve with time and location? 
 
 
 ## Abstract 
@@ -12,7 +12,7 @@ We propose in this study to analyze how different regions' beer preferences chan
 
 1. How does the popularity and style rating for each type of beer change over the years for a specific location? For each region of interest, we want to look at the distribution of beers they are consuming and the beers they are giving the highest ratings to, and see if that is changing with time. 
 
-2. Overall, what styles of beer are consumed the most, and which get the highest rating? Is there a specific location that produces higher beer scores for each brewery?
+2. Overall, what styles of beer are rated the most, and which get the highest rating? Is there a specific location that produces higher beer scores for each brewery?
 
 3. What factors in the beer between taste, aroma, and palate contribute most to a higher rating value? 
 
@@ -50,7 +50,7 @@ We plotted the data and saw very few beers with higher than 50% alcohol percenta
 
 Our data consisted of users with locations and breweries with locations. The locations were either countries or states within the United States, so we combined two separate datasets on countries and US state populations to create a general population data frame. 
 
-5. Selecting Locations
+##### *5. Selecting Locations*
 For each location, we measured the number of distinct users divided by the total population and we only wanted to look at values where that rating was high. We also excluded countries with too few users.
 
 ### *Step 2: Visualizations and Initial Analysis*
@@ -66,11 +66,12 @@ We extract the most popular beer style by quantity for each location by looking 
 We extract the most popular (in quantity) beer production place (brewery location) for each location by looking at the total number of ratings. We also put a threshold of 5 that needs to be satisfied for a location-brewery location pair to be considered in this analysis. We look at each of the top style for each country, and then do groupings to see the distribution of different styles and how similar they are. We can also put it on an interactive heatmap to show differences for each region, and also so users can select year by year. 
 
 #### *Question 3* 
-We can run Ordinary Least Squares Linear Regression on our ratings to see which aspects are the most important factors for giving each aspect a weight in comparison to taste. We were also thinking about using decision trees to predict taste based on the scores that people put in for each of the various aspects and to predict consumption. We will then test our dataset on a different subset of data to measure the accuracy 
+We can run Ordinary Least Squares Linear Regression on our ratings to see which aspects are the most important factors for giving each aspect a weight in comparison to taste. We were also thinking about using decision trees to predict taste based on the scores that people put in for each of the various aspects and to predict consumption. We will then test our dataset on a different subset of data to measure the accuracy.
 
 #### *Question 4*
 
-We first want to pair the most similar locations based on 3 of the 4 categories between the number of users divided by population, distance, language, and wealth. The result is that we get locations that could be relatively close in distance, have the same percentage of users who consume beer, and have similar levels of income. Then, we would sample half the matches with similar languages and look at their beer trends, and then sample half the matches with different matches and look at their beer trends. We can do t-tests of the data to see which factors between language, wealth, distance, and proportion of beer drinkers affect the trends the most, and if there is a correlation. 
+We will define what a trend is. For now, the definition would be a style preferred in a number of countries superior to a threshold. This threshold will be optimized according to the results of preferred styles obtained. Once a final definition will be adopted, we will study their evolutions and determine interconnexion between countries. This could be done with graph analysis, with weights that could combine different factors (distance for example, and difference in beer consumption habits).
+We then want to pair the most similar locations based on 3 of the 4 categories between the number of users divided by population, distance, language, and wealth. The result is that we get locations that could be relatively close in distance, have the same percentage of users who consume beer, and have similar levels of income. Then, we would sample half the matches with similar languages and look at their beer trends, and then sample half the matches with different matches and look at their beer trends. We can do t-tests of the data to see which factors between language, wealth, distance, and proportion of beer drinkers affect the trends the most, and if there is a correlation. 
 
 
 
@@ -80,7 +81,27 @@ We first want to pair the most similar locations based on 3 of the 4 categories 
 
 ## Planning
 
+1.12:
+ - Interactive heatmap of preferred beer depending on time
+ - Finding a threshold to define a trend, and study trend spreadings
+ - OLS linear regression and decision trees to find the most important aspects
+
+8.12: 
+ - Interconnexion between countries: graph studies, finding combining scores to adjust the weights between countries
+ - t-tests of the countrie's attributes that influence beer taste
+
+15.12: 
+ - Represent the interaction/strength of links between countries on a map
+ - Adding parameters to the interactive map: characteristics of the countries, time-scales (trends over a year or accross years)
+ - Combine the results and write the data story
+
+22.12:
+ - Finish the datastory
+ - Finish the visualization
+
 ## Team organization
 
-## How do beer trends evolve with time? 
+Iris Toye: Finding the most important aspects of beers with decision trees and graph analysis between countries.
+
+
 
