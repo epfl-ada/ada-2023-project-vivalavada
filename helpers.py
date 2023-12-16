@@ -33,10 +33,13 @@ def convert_unix_timestamp(unix_timestamp):
     return timestamp
 
 
-def location_style_stats(ratings, users, year, loc_style_threshold, rating_flag):
+def location_style_stats(ratings, users, year, loc_style_threshold, rating_flag, global_flag = False):
     year_filter = ratings['year'] == year
     ratings = ratings.loc[year_filter]
     ratings = pd.merge(ratings, users[['user_id', 'nbr_ratings', 'location']], on='user_id', how='inner')
+
+    if global_flag:
+        ratings['location'] = ratings['location'].apply(lambda x: 'United States' if 'United States' in x else x)
 
     ratings_groupedby_loc_style = ratings.groupby(['location', 'style'])
 
@@ -84,18 +87,13 @@ def location_style_stats(ratings, users, year, loc_style_threshold, rating_flag)
         location_style = pd.concat([full_thr, half_thr])
 
     else:
-        loc_list = location_style['location'].unique()
-        filtered_loc_list = location_style[location_style['popularity_z_score'] > 1.0]['location'].unique()
-        locs_filtered_out = set(loc_list) - set(filtered_loc_list)
-        location_style_filtered_out = location_style[location_style['location'].isin(locs_filtered_out)]
-        half_thr = location_style_filtered_out[location_style_filtered_out['popularity_z_score'] > 0.5]
-        full_thr = location_style[location_style['popularity_z_score'] > 1.0]
-        location_style = pd.concat([full_thr, half_thr])
+        global_threshold = 0.0
+        location_style = location_style[location_style['popularity_z_score'] > global_threshold]
 
     return location_style
 
 
-def location_brewery_country_stats(ratings, users, breweries, year, loc_brewery_threshold, rating_flag):
+def location_brewery_country_stats(ratings, users, breweries, year, loc_brewery_threshold, rating_flag, global_flag = False):
 
     year_filter = ratings['year'] == year
     ratings = ratings.loc[year_filter]
@@ -106,6 +104,9 @@ def location_brewery_country_stats(ratings, users, breweries, year, loc_brewery_
     breweries = breweries.rename(columns={'location': 'brewery_location'})
     ratings = pd.merge(ratings, breweries[['brewery_location', 'id']], left_on='brewery_id',
                                right_on='id')
+
+    if global_flag:
+        ratings['location'] = ratings['location'].apply(lambda x: 'United States' if 'United States' in x else x)
 
     ratings_gb_loc_brew_loc = ratings.groupby(['location', 'brewery_location'])
     location_brewery_country = ratings_gb_loc_brew_loc.size().reset_index(name='number')
@@ -149,13 +150,8 @@ def location_brewery_country_stats(ratings, users, breweries, year, loc_brewery_
         location_brewery_country = pd.concat([full_thr, half_thr])
 
     else:
-        loc_list = location_brewery_country['location'].unique()
-        filtered_loc_list = location_brewery_country[location_brewery_country['popularity_z_score'] > 1.0]['location'].unique()
-        locs_filtered_out = set(loc_list) - set(filtered_loc_list)
-        location_brewery_filtered_out = location_brewery_country[location_brewery_country['location'].isin(locs_filtered_out)]
-        half_thr = location_brewery_filtered_out[location_brewery_filtered_out['popularity_z_score'] > 0.5]
-        full_thr = location_brewery_country[location_brewery_country['popularity_z_score'] > 1.0]
-        location_brewery_country = pd.concat([full_thr, half_thr])
+        global_threshold = 0.0
+        location_brewery_country = location_brewery_country[location_brewery_country['popularity_z_score'] > global_threshold]
 
     return location_brewery_country
 
