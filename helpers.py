@@ -370,5 +370,15 @@ def t_test_dataframe(similarity_columns, closest_ratings, farthest_ratings, glob
     return pd.DataFrame(df_all_years)
 
 
+def prepare_data_plot(df, inverted_location_dict, year): 
+    df_jaccard = df[['Country 1', 'Country 2', 'Similarity - ' + str(year)]]
+    df_jaccard.rename(columns={'Country 1': 'source', 'Country 2': 'target', 'Similarity - '+str(year): 'weight'}, inplace=True)
+    df_jaccard = df_jaccard.replace(inverted_location_dict)
+    df_jaccard = df_jaccard[df_jaccard['weight'] != 0]
+    str_to_int = dict(zip(c['nodes'], c.index))
+    df_jaccard['source'] = df_jaccard['source'].replace(str_to_int)
+    df_jaccard['target'] = df_jaccard['target'].replace(str_to_int)
+
+    return df_jaccard[['source', 'target', 'weight']]
 
 
