@@ -15,6 +15,7 @@ from statsmodels.stats import diagnostic
 from scipy import stats
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
+from scipy.stats import spearmanr
 
 
 def txt_to_csv(file_path):
@@ -212,9 +213,6 @@ def compute_similarity_countries(df_ranking, ll_dict, jaccard_flag = True, ):
 
 
 def plot_similarity_evolution(df_similarity):
-    #title_dictionary = {str(style_similarity_ratings) : 'Similarity of Style Ratings Each Year', str(style_similarity_popularity) : 'Similarity of Consumption of Beer Styles Each Year',
-     #str(mean_global_similarity_ratings) : 'Global beer consumption styles each year', str(brewery_similarity_popularity) : 'Top brewery similarity based on Consumption',
-      #str(brewery_similarity_ratings) : 'Top brewery similarity based on Ratings', str(brewery_similarity_to_global_pop) : 'Brewery consumption similarity compared to global popularity', str(brewery_similarity_to_global_ratings) : 'brewery rating similarity compared to global popularity'}
     all_columns = df_similarity.columns.tolist()
     rename_columns = {}
     similarity_columns = []
@@ -233,31 +231,17 @@ def plot_similarity_evolution(df_similarity):
     sns.pointplot(data=df_similarity_copy[similarity_columns])
     plt.show()
 
-import math
 
-# Function taken from GeeksForGeeks
-def haversine(lat1, lon1, lat2, lon2): 
-    dLat = (lat2 - lat1) * math.pi / 180.0 # Get distance between each of the lats and longs and convert to radians
-    dLon = (lon2 - lon1) * math.pi / 180.0
-    # convert to radians
-    lat1 = (lat1) * math.pi / 180.0
-    lat2 = (lat2) * math.pi / 180.0
-    # apply formula
-    a = (pow(math.sin(dLat / 2), 2) + pow(math.sin(dLon / 2), 2) * math.cos(lat1) * math.cos(lat2));
-    RADIUS = 6371 # Approximate radius of the earth in kilometers
-    c = 2 * math.asin(math.sqrt(a))
-    return RADIUS * c
-
-
-def get_lat_long(percentage_users_by_location):
+def get_lat_long(location_list):
     from geopy.geocoders import Nominatim
     latitudes_longitudes = {}
     geolocator = Nominatim(user_agent="my_geocoder")
-    for location in percentage_users_by_location['location'].tolist():
+    for location in location_list:
         geocode_location = geolocator.geocode(location)
         if geocode_location:
             latitudes_longitudes[location] = (geocode_location.latitude, geocode_location.longitude)
     return latitudes_longitudes
+
 
 def get_location_df(latitudes_longitudes):
     location_distances_dict = {}
@@ -267,8 +251,9 @@ def get_location_df(latitudes_longitudes):
             if first_location == second_location:
                 location_distances_dict[first_location][second_location] = 0
             if first_location != second_location:
-                location_distances_dict[first_location][second_location] = haversine(latitudes_longitudes[first_location][0], latitudes_longitudes[first_location][1], latitudes_longitudes[second_location][0], latitudes_longitudes[second_location][1])
+                location_distances_dict[first_location][second_location] = geodesic(latitudes_longitudes[first_location], latitudes_longitudes[second_location]).km
     return location_distances_dict, pd.DataFrame(location_distances_dict)
+
 
 def k_closest_and_farthest_locations(k, all_differences_dict): # returns the k closest locations to the current location and the k furthest locations to the current location based on differences between each location
     k_closest_locs = {}
@@ -320,53 +305,49 @@ def get_group_similarities(ratings, df_ranking, k_closest_locs, k_farthest_locs,
     return closest_sim_tot, farthest_sim_tot
 
 def plot_graphs(similarity_columns, closest_ratings, farthest_ratings, global_ratings, closest_pop, farthest_pop, global_pop, brewery_or_style = 'style', wealth_flag = 'wealth'):
-    fig, axs = plt.subplots(1, 2, figsize=(16, 6)) # Make the graphs
-
-    axs[0].scatter(similarity_columns, closest_ratings.mean(), label='Closest locations in terms of  ' + str(wealth_flag) + ' - ' + str(brewery_or_style) + ' ratings mean')
+    fig, axs = plt.subplots(1, 2, figsize=(16, 6))
+    plt.rc('xtick', labelsize=14)
+    plt.rc('ytick', labelsize=14)
+    axs[0].scatter(similarity_columns, closest_ratings.mean(), label='Closest locations in terms of  ' + str(wealth_flag))
     axs[0].plot(similarity_columns, closest_ratings.mean(), linestyle='-', marker='', color='blue')
 
-    axs[0].scatter(similarity_columns, farthest_ratings.mean(), label='Farthest locations in terms of  ' + str(wealth_flag) + ' - ' + str(brewery_or_style) + ' popularity mean')
+    axs[0].scatter(similarity_columns, farthest_ratings.mean(), label='Farthest locations in terms of  ' + str(wealth_flag))
     axs[0].plot(similarity_columns, farthest_ratings.mean(), linestyle='-', marker='', color='orange')
 
-    axs[0].scatter(similarity_columns, global_ratings.iloc[:, 2:].mean(), label='Global ' + str(brewery_or_style) +   ' similarity Ratings mean') # Plotting global style ratings mean using style similarity ratings calculated for global
+    axs[0].scatter(similarity_columns, global_ratings.iloc[:, 2:].mean(), label='Mean global similarity') # Plotting global style ratings mean using style similarity ratings calculated for global
     axs[0].plot(similarity_columns, global_ratings.iloc[:, 2:].mean(), linestyle='-', marker='', color='green')
 
+    axs[0].set_title(str(brewery_or_style) + ' Similarity Based on Ratings', fontsize = 16)
+    axs[0].set_xlabel('Year', fontsize = 16)
+    axs[0].set_ylabel('Similarity', fontsize = 16)
+    axs[0].legend(fontsize = 12)
 
-    axs[0].set_title( str(brewery_or_style) + ' Similarity Based on Ratings')
-    axs[0].set_xlabel('Year')
-    axs[0].set_ylabel('Similarity')
-    axs[0].legend()
-
-
-    axs[1].scatter(similarity_columns, closest_pop.mean(), label='Closest locations in terms of  ' + str(wealth_flag) + ' - ' + str(brewery_or_style) + ' popularity mean')
+    axs[1].scatter(similarity_columns, closest_pop.mean(), label='Closest locations in terms of  ' + str(wealth_flag))
     axs[1].plot(similarity_columns, closest_pop.mean(), linestyle='-', marker='', color='blue')
 
-    axs[1].scatter(similarity_columns, farthest_pop.mean(), label='Farthest locations in terms of  ' + str(wealth_flag) + ' - ' + str(brewery_or_style) + ' popularity mean')
+    axs[1].scatter(similarity_columns, farthest_pop.mean(), label='Farthest locations in terms of  ' + str(wealth_flag))
     axs[1].plot(similarity_columns, farthest_pop.mean(), linestyle='-', marker='', color='orange')
 
-    axs[1].scatter(similarity_columns, global_pop.iloc[:, 2:].mean(), label='Global ' + str(brewery_or_style) + ' popularity mean')
+    axs[1].scatter(similarity_columns, global_pop.iloc[:, 2:].mean(), label='Mean global similarity')
     axs[1].plot(similarity_columns, global_pop.iloc[:, 2:].mean(), linestyle='-', marker='', color='green')
 
-
-    axs[1].set_title( str(brewery_or_style) + ' Similarity Based on Popularity')
-    axs[1].set_xlabel('Year')
-    axs[1].set_ylabel('Similarity')
-    axs[1].legend()
-
-
+    axs[1].set_title( str(brewery_or_style) + ' Similarity Based on Popularity', fontsize = 16)
+    axs[1].set_xlabel('Year',  fontsize = 16)
+    axs[1].set_ylabel('Similarity',  fontsize = 16)
+    axs[1].legend(fontsize = 12)
     plt.show()
 
 
 def t_test_dataframe(similarity_columns, closest_ratings, farthest_ratings, global_ratings, closest_pop, farthest_pop, global_pop):
     from scipy import stats
-    df_all_years = {'year' : [], 'closest vs furthest p value for rating': [], 'closest vs furthest p value based on consumption': []}
+    df_all_years = {'year' : [], 'closest vs farthest p-value based on rating': [], 'closest vs farthest p-value based on popularity': []}
     for i in range(2006, 2018):
         string_year = str(i)
         t_statistic, p_ratings_value = stats.ttest_ind(closest_ratings[string_year],farthest_ratings[string_year])
         df_all_years['year'].append(string_year)
-        df_all_years['closest vs furthest p value for rating'].append(p_ratings_value)
+        df_all_years['closest vs farthest p-value based on rating'].append(p_ratings_value)
         t_statistic, p_pop_value = stats.ttest_ind(closest_pop[string_year],farthest_pop[string_year])
-        df_all_years['closest vs furthest p value based on consumption'].append(p_pop_value)
+        df_all_years['closest vs farthest p-value based on popularity'].append(p_pop_value)
     return pd.DataFrame(df_all_years)
 
 
@@ -380,5 +361,34 @@ def prepare_data_plot(df, inverted_location_dict, year):
     df_jaccard['target'] = df_jaccard['target'].replace(str_to_int)
 
     return df_jaccard[['source', 'target', 'weight']]
+
+
+def correlation_coefficient(df_similarity, dictionary, distance=True):
+    df = df_similarity.copy()
+    if distance:
+        df['distance'] = df.apply(
+            lambda row: geodesic(dictionary[row['location 1']], dictionary[row['location 2']]).kilometers, axis=1)
+    else:
+        df['distance'] = df.apply(lambda row: abs(dictionary[row['location 1']] - dictionary[row['location 2']]),
+                                  axis=1)
+
+    correlations = {}
+    p_values = {}
+    for year in range(2006, 2018):
+        correlation, p_value = spearmanr(df['distance'], df[str(year)])
+        correlations[year] = correlation
+        p_values[year] = p_value
+
+    return correlations, p_values
+
+
+def plot_correlation(correlations, title):
+    plt.plot(list(correlations.keys()), list(correlations.values()))
+    plt.rc('xtick', labelsize=12)
+    plt.rc('ytick', labelsize=12)
+    plt.xlabel('Year', fontsize=14)
+    plt.ylabel('Correlation', fontsize=14)
+    plt.title(title, fontsize=14)
+    plt.show()
 
 
