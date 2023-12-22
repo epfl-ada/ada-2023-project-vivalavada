@@ -5,15 +5,15 @@ ada-2023-project-vivalavada created by GitHub Classroom
 
 ## Abstract
 
-Beer, being [the most widely consumed alcoholic beverage globally](https://en.wikipedia.org/wiki/Beer), boasts a diverse array of styles and is crafted by numerous producers across various brewery locations. Our definition of "beer preference" encompasses the most consumed beer styles, those with the highest ratings, as well as the brewery locations that are both the most consumed and highest rated. We propose in this study to analyze what are the beer preferences of different locations, and how their evaluation and spreading over time reflects interconnection between countries. Additionally, we explore global preferences to provide a comprehensive understanding of the dynamics in beer consumption and evaluation worldwide. In the end, our objective is to explore whether countries that are close together, either geographically or socio-economically, exhibit similarity in terms of beer preferences, and how these similarities evolve.
+We propose in this study to analyze what are the beer preferences of different locations, and how their evaluation and spreading over time reflects interconnection between countries. Our definition of "beer preference" for a location encompasses the most consumed beer styles, those with the highest ratings, as well as the brewery locations that are both the most consumed and highest rated. Additionally, we explore global preferences to provide a comprehensive understanding of the dynamics in beer consumption and evaluation worldwide. In the end, our objective is to explore whether countries that are close together, either geographically or socio-economically, exhibit similarity in terms of beer preferences, and how these similarities evolve.
 
 ## Research Questions
 
-1. According to our above-given beer trend definitions, to what degree are we able to observe beer trends in our dataset, and if yes, how do they differ from location to location?
+1. According to our above-given beer preference definitions ..?
 
 2. How do these beer consumption habits change over the years for each location? Where do these trends originate and how far/fast do they spread? How long do they last?
 
-3. Are the beer trends of some locations considerably similar to that of some other locations? If yes, does the geographical distance between the locations play an important role in this? What could be the other reasons for such similarities (cultural ressemblance, brewery locations, wealth, etc.)?
+3. Are the beer preferences of some locations considerably similar to that of some other locations? If yes, does the geographical distance and wealth difference between the locations play an important role in this? 
 
 4. Apart from the local beer trends followed in separate locations, do the overall beer consumption habits (trends) of all the locations tend to follow a particular pattern such that there are global trends? Which kind of trends (local vs. global) is more effective at each location and what could be the underlying reasons? As we know, “globalization” of the earth significantly increased the availability of long-distance transportation, communication, and trade. As the consequences of this globalization, did global trends begin to dominate over local ones?
 
