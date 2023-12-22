@@ -9,15 +9,13 @@ We propose in this study to analyze what are the beer preferences of different l
 
 ## Research Questions
 
- More specifically, we will identify the beer preferences for each location and analyze how their evaluation and spreading behave over time. Parallel to that, we will zoom out a bit and investigate the ‘global’ beer preferences, which will give us further insights into what the evolution of beer preferences signifies on a larger scale. Furthermore, we want to see which locations exhibit ‘similar’ beer preferences, and how these similarities change over time. In the end, we will try to understand how these similarities and differences are influenced by two factors: the geographical distances and the differences in wealth.
+1. According to our above-given beer preference definitions, what are the different preferences and how do beer consumption habits change over the years for each location?
 
-1. According to our above-given beer preference definitions, what are the different preferences for each location?
-
-2. How do these beer consumption habits change over the years for each location? Where do these habits originate and how far/fast do they spread? How long do they last?
+2. How long does a country have the same preference? Do preferences of the different locations around the globe spread to other countries?
 
 3. Apart from the local beer preferences in separate locations, what is the global beer preference, and how does it change over time?
 
-4. Are the beer preferences of some locations considerably similar to that of some other locations? If yes, does the geographical distance and wealth difference between the locations play an important role in this? Furthermore, how do global similarities of style and brewery locations evolve?
+4. Are the beer preferences of some locations considerably similar to that of some other locations? If yes, does the geographical distance and wealth difference between the locations play an important role in this? Furthermore, how do global similarities in beer preferences evolve?
 
 ## Additional Datasets 
 
