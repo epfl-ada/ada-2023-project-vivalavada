@@ -121,12 +121,8 @@ Using all the findings we obtained by answering the research questions, we creat
 
 ## Team organization
 
-Tugba: Important aspects of beers using decision trees, create data story
+Tugba and Yagiz: Definition of beer preferences and creation of the dataframes. Definition of beer trends.
 
-Yagiz: Important aspects of beers with OLS, create data story
+Hadrien: Website and interactive figures and maps.
 
-Hadrien: t-test for parameters that influence beer taste, representation of interaction on maps
-
-Rishi: Interactive heatmap
-
-Iris: Trend definition and graph analysis between countries
+Rishi and Iris: Similarity definition, dataframes of similarities and corresponding graphs.
