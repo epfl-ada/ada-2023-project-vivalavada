@@ -7,6 +7,8 @@ ada-2023-project-vivalavada created by GitHub Classroom
 
 We propose in this study to analyze what are the beer preferences of different locations, and how their evaluation and spreading over time reflect the interconnection between countries. Our definition of "beer preference" for a location encompasses the most consumed beer styles, those with the highest ratings, as well as the brewery locations that are both the most consumed and highest rated. Additionally, we explore global preferences to provide a comprehensive understanding of the dynamics in beer consumption and evaluation worldwide. In the end, our objective is to explore whether countries that are close together, either geographically or socio-economically, exhibit similarity in terms of beer preferences, and how these similarities evolve.
 
+You can check our data story is given in the [link](https://hadriensevel.github.io/vivalavada/).
+
 ## Research Questions
 
 1. According to our above-given beer preference definitions, what are the different preferences and how do beer consumption habits change over the years for each location?
