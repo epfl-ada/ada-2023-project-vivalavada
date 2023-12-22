@@ -65,27 +65,34 @@ We regard each state of U.S. as a separate location rather than naming them all 
 We plotted the locations we filtered out on a map, using the latitude and longitude coordinates from open street maps for each coordinate. We also plotted the brewery locations on a heatmap using a similar process. We then implemented some initial methods to find the most popular or highest-rated beer styles/beer producers. We also fitted a basic OLS model to see the coefficients of each beer aspect (taste, appearance, etc.) to the overall rating. Lastly, we have found the Pearson correlation coefficient. and corresponding p_value between the overall rating and alcohol by volume. Although basic, these analyses allowed us to better understand our data.
 
 
-### *Step 3: Ideas for answering the research questions*
+### *Step 3: Answering the research questions*
  
 #### *Question 1*
 
-We extract the most popular (in quantity) beer style and beer production place (brewery location) for each location by looking at the total number of ratings. We divide the number of ratings to the total number of ratings for that location to get a comparable result.
+We extracted the most popular (in quantity) beer style and beer production place (brewery location) for each location for each year by looking at the total number of ratings. We divide the number of ratings by the total number of ratings for that location to get a comparable result. Furthermore, we determined that for a beer style or brewery location to be considered a preference for a location, it must be at least as popular (in terms of its percentage in the total number of ratings) as its overall global popularity. As a result, we excluded those that did not meet this criterion from our analysis.
 
-For investigating the beer styles and brewery locations with highest ratings, we take the average of the ratings and compare them, however we also put a threshold on number of ratings to be satisfied for being considered in this analysis. We standardize the ratings using location mean and standard deviation to get a comparable result. 
-
-To find the highest valued beer aspect, we can run Ordinary Least Squares Linear Regression on our ratings for different locations. We were also thinking about using decision trees to predict rating based on the scores that people put in for each of the various aspects and to predict consumption. We will then test our dataset on a different subset of data to measure the accuracy.
+For investigating the beer styles and brewery locations with the highest ratings, we take the average of the ratings and compare them, however, we also put a threshold on the number of ratings to be satisfied for being considered in this analysis. We standardize the ratings using location mean and standard deviation to get a comparable result. 
 
 #### *Question 2*
 
-We can do the trend analysis described in question 1 for different years for each location. Then we can check the locations which have the same or similar trends, and the years they exhibit that trend. We can visualize spread and duration of trends using colors in world map.
+We took the values found in Question 1 and visualized the spread and duration of preferences using colors in the world map.
 
 #### *Question 3* 
 
-We will study trends and trend evolutions to determine interconnexion between countries. This could be done with graph analysis, with weights combining different factors (information on the countries). We then want to match the locations based on 3 of the 4 categories: number of users divided by population, distance, language, and wealth. After matching, we can investigate the relationship between beer consumption trends of locations and to the property that we have not matched. Moreover, we can do t-tests of the data to see which factors between language, wealth, distance, and proportion of beer drinkers affect the trends the most, and whether there is a correlation.
+To find the global preferences, we again used the values found in Question 1. For each location, we assigned points to their top 10 favorite beer styles or brewery locations. The points are assigned by mimicking the rating system used in the Eurovision Song Contest: 12 points for the most preferred beer style or brewery location, 10 points for the second most preferred one, 8 points for the third most preferred one, and so on. Moreover, since we have too many U.S. states, to find a more realistic and fair global preference we treated the whole U.S. as a single location. By applying this process, we found the most popular and highest-rated beer styles and brewery locations for each year globally.
 
 #### *Question 4*
 
-We can conduct the trend analysis described in question 1 globally for each year. If there is a global trend, we can check the similarity between that and the consumption trends of the other locations. For each year we can find which locations follow a similar trend to global one and we can investigate the reasons behind it using the methods in question 3. Moreover, we can look at the number of locations which exhibits more global trend compared to others and check if this number gets larger over the years.
+We defined similarity metrics between beer preferences as follows:
+
+- For beer styles, we use the Jaccard similarity metric. We extracted the top 3 beer style preferences for each location each year. The beer style preference similarity of the two locations is calculated between their corresponding beer style preference sets of size 3.
+
+For the brewery locations, we use the inverse of the geographical distance between the preferred brewery locations of the two locations to define how 'similar' their preferred brewery locations are.
+
+To assess the effect of geographical distance and wealth, we computed the 15 most similar and most different locations for those two facets. For location, we used the geographical distance between each location pair. For wealth, we used the difference in GDP per capita so that population and country size would not play a factor. Then, using the metrics for similarities defined above, for each location, we found the mean pairwise preference similarity of it with the 15 most similar locations and the 15 most different locations to it. Furthermore, we applied t-tests to distributions of the mean similarity of the closest locations and the mean similarity of the farthest locations to assess their difference. Finally, we calculated a single similarity score for each pair of locations for each year and calculated the Pearson correlation coefficient between the beer preference similarity and GDP per capita difference or geographical distance.
+
+To find the global similarity, we calculated the similarity between each two pairs of locations for each year and took the mean of the pairwise similarity for all pairs.
+
 
 ### *Step 4: Data story with visualizations*
 
@@ -95,18 +102,17 @@ Using all the findings we obtained by answering the research questions, we creat
 ## Planning
 
 1.12:
- - Interactive heatmap 
- - Trend definition and trend spreading
- - OLS linear regression and decision trees to find the most important aspects
+ - Extraction of local preferences
+ - Similarity definition and calculating pairwise similarities between locations
 
 8.12: 
- - Interconnexion between countries: graph studies
- - t-tests of the countrie's attributes that influence beer preferences
+ - Extraction of global preferences
+ - Finding the 15 closest and 15 farthest countries and calculating respective similarities.
+ - Calculating global similarities
 
 15.12: 
- - Represent the interaction/strength of links between countries on a map
- - Adding parameters to the interactive map (characteristics of the countries)
- - Combine the results and write the data story
+ - Representing the local preferences on a map to extract duration or spread information
+ - Perform the t-tests and calculate the Pearson coefficients
 
 22.12:
  - Finish the datastory
