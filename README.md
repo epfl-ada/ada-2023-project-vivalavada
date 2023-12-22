@@ -1,20 +1,11 @@
 # ada-2023-project-vivalavada
 ada-2023-project-vivalavada created by GitHub Classroom
 
-## Cheers to Change: Exploring Temporal and Spatial Dynamics in Beer Trends
+## Cheers to Change: Exploring Temporal and Spatial Dynamics in Beer Preferences
 
-## Abstract 
+## Abstract
 
-We propose in this study to analyze what are the beer trends by location, where do the trends originate, and how their evaluation and spreading over time reflects interconnection between countries. We shall make use of different ways to define a "beer trend" for a given location, such as the beer styles that are the most consumed, the beer styles with the highest ratings, the most popular beer producers (brewery or country), or the highest valued beer aspect (taste, aroma, etc.). Our motivation is to investigate whether countries that are close together, either geographically or socio-economically, have become more interconnected over time through the lens of beer and to discover the underlying factors playing a role in forming and shifting of beer trends.
-
-Note: The beer dataset does not have enough data for beer trend analysis for each year and location. After initial preprocessing and analysis of data, we have decided to consider only the below given time range and location set for further analysis:
-
-**Time range:** years from 2006 to 2017, including 2006 and 2017.
-
-**Location set:** All states of U.S. except South Dakota (49 states), Iceland, Denmark, Canada, Norway, Sweden, Belgium, New Zealand, Ireland, Finland, Scotland, Australia, Netherlands, Luxembourg, England, Poland, Croatia, Northern Ireland, Spain, Italy, Germany, France and Brazil.
-
-We regard each state of U.S. as a separate location rather than naming them all U.S.A. This is because most of the data comes from different states of U.S and it is a much bigger country than the other countries in our list so that reducing them all to a single name and location would waste too much data. Because of this decision, we call this a "location set" rather than a "country set".
-
+Beer, being [the most widely consumed alcoholic beverage globally](https://en.wikipedia.org/wiki/Beer), boasts a diverse array of styles and is crafted by numerous producers across various brewery locations. We define "beer preference" as the beer styles that are the most consumed, the beer styles with the highest ratings, brewery locations that are the most consumed, and brewery locations with the highest ratings. We propose in this study to analyze what are the beer preferences of different locations, and how their evaluation and spreading over time reflects interconnection between countries. Additionally, we explore global preferences to provide a comprehensive understanding of the dynamics in beer consumption and evaluation worldwide. In the end, our objective is to explore whether countries that are close together, either geographically or socio-economically, exhibit similarity in terms of beer preferences, and how these similarities evolve.
 
 ## Research Questions
 
@@ -32,9 +23,6 @@ We regard each state of U.S. as a separate location rather than naming them all 
 1. [World Population Dataset](https://www.kaggle.com/datasets/iamsouravbanerjee/world-population-dataset): This dataset gives us population of each country by year, which is used to calculate the percentage of population of each country that have accounts in either of the websites. Population also gives us a further parameter to analyze the trends of each country. We merged our existing datasets of users, ratings, and breweries with the population dataset based on the attribute of location. We considered the year 2010 by reading the populations, which is a suitable year for our time range, from 2006 to 2017.
 
 2. [Us State Population Dataset](https://www.census.gov/data/tables/time-series/demo/popest/2020s-state-total.html): We use this dataset with the same goal as the previous one, but for distinct states in the United States. Again, consider only the data from 2010 to be consistent with the country years.
-
-3. [Languages Dataset](https://resourcewatch.org/data/explore/soc_071_world_languages?section=Discover&selectedCollection=&zoom=3&lat=0&lng=0&pitch=0&bearing=0&basemap=dark&labels=light&layers=%5B%7B%22dataset%22%3A%2220662342-dcdd-4a42-9f58-bcc80217de71%22%2C%22opacity%22%3A1%2C%22layer%22%3A%22f2d76e6b-060d-4dc9-83ea-284bef6b2aae%22%7D%5D&aoi=&page=1&sort=most-viewed&sortDirection=-1)
-  This dataset gives information on what languages each country primarily speaks. It can confound the results on the similarity between the two countries' beer preferences. Our hypothesis is that same language should facilitate trade and culture. The dataset has 233 countries and has the top 3 official languages for each country.
 
 4.  [US State Wealth Dataset](https://ssti.org/blog/useful-stats-capita-gross-state-product-1998-2018))
    This dataset gives the GDP per capita for each state in 2018. It also gives the percentage change over a 10 period time. Therefore, we can apply that change to see the GDP per capita for each US state in 2008 which falls into our year range of interest. 
@@ -65,7 +53,13 @@ Our data consisted of users with locations and breweries with locations. The loc
 
 ##### *5. Selecting Year Range and Locations*
 
-In the notebook, we analysed for which years we have enough amount of data for analysis and decided to include only the years after and including 2006. For each location, we measured the number of distinct users divided by the total population and we only included locations where the percentage of users is high enough. We also put a condition that for each year of interest the valid locations should at least a predefined number of ratings. We ended up with 71 locations that satisfy all the conditions.
+In the notebook, we analyzed for which years we have enough amount of data for analysis. Moreover, for each location, we measured the number of distinct users divided by the total population and we only included locations where the percentage of users is high enough. We also put a condition that for each year of interest, the valid locations should have at least a predefined number of ratings. The final sets of time range and location set are given below: 
+
+**Time range:** years from 2006 to 2017, including 2006 and 2017.
+
+**Location set:** All states of U.S. except South Dakota (49 states), Iceland, Denmark, Canada, Norway, Sweden, Belgium, New Zealand, Ireland, Finland, Scotland, Australia, Netherlands, Luxembourg, England, Poland, Croatia, Northern Ireland, Spain, Italy, Germany, France and Brazil.
+
+We regard each state of U.S. as a separate location rather than naming them all U.S.A. This is because most of the data comes from different states of U.S and it is a much bigger country than the other countries in our list so reducing them all to a single name and location would waste too much data. Because of this decision, we call this a "location set" rather than a "country set".
 
 ### *Step 2: Visualizations and Initial Analysis*
 
@@ -96,7 +90,7 @@ We can conduct the trend analysis described in question 1 globally for each year
 
 ### *Step 4: Data story with visualizations*
 
-Using all the findings we obtained by answering the research questions, we plan to create a data story enriched by visualizations such as interactive plots. 
+Using all the findings we obtained by answering the research questions, we created a data story enriched by visualizations such as interactive plots. 
 
 
 ## Planning
